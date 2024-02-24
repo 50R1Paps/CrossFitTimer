@@ -6,7 +6,7 @@ import datetime
 
 class MyApp(App):
     def build(self):
-        time = 30
+        time = int(input("Quanto dura il primo intervallo?"))
         self.target_time = datetime.datetime.now() + datetime.timedelta(seconds=time+3)
         self.countdown_active = False
         self.main_box = BoxLayout(orientation='vertical')
@@ -29,8 +29,12 @@ class MyApp(App):
             if remaining_time.total_seconds() <= 0:
                 self.button.text = 'Countdown finished!'
                 self.countdown_active = False
+                self.stop()
             else:
                 self.button.text = str(int(remaining_time.total_seconds()))  # Mostra solo la parte intera
 
 if __name__ == '__main__':
-    MyApp().run()
+    print("Starting the app")
+    intervals = int(input("Quanti intervalli sono?"))
+    for i in range(intervals):
+        MyApp().run()
